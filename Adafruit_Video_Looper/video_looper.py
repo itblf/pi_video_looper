@@ -8,6 +8,7 @@ import re
 import sys
 import signal
 import time
+from datetime import datetime
 
 import pygame
 
@@ -66,6 +67,9 @@ class VideoLooper(object):
         self._sound_vol_file = self._config.get('omxplayer', 'sound_vol_file');
         # default value to 0 millibels (omxplayer)
         self._sound_vol = 0
+        # Times for controlling volume change
+        self._start_time = "8:00"
+        self._end_time = "20:00"
         # Initialize pygame and display a blank screen.
         pygame.display.init()
         pygame.font.init()
@@ -123,13 +127,23 @@ class VideoLooper(object):
                                if re.search('\.{0}$'.format(ex), x, 
                                             flags=re.IGNORECASE) and \
                                x[0] is not '.'])
+                # Set volume depending on the time of day
+                self.now_time = datetime.now().time()
+                self._start_time = datetime.strptime(self._start_time, "%H:%M").time()
+                self._end_time = datetime.strptime(self._end_time, "%H:%M").time()
+                if self._start_time <= self.now_time <= self._end_time:
+                    self._sound_vol = 0
+                else:
+                    self._sound_vol = -6000
+                # OLD               
                 # Get the video volume from the file in the usb key
-                sound_vol_file_path = '{0}/{1}'.format(path.rstrip('/'), self._sound_vol_file)
-                if os.path.exists(sound_vol_file_path):
-                    with open(sound_vol_file_path, 'r') as sound_file:
-                        sound_vol_string = sound_file.readline()
-                        if self._is_number(sound_vol_string):
-                            self._sound_vol = int(float(sound_vol_string))
+                #sound_vol_file_path = '{0}/{1}'.format(path.rstrip('/'), self._sound_vol_file)
+                #if os.path.exists(sound_vol_file_path):
+                #    with open(sound_vol_file_path, 'r') as sound_file:
+                #        sound_vol_string = sound_file.readline()
+                #        if self._is_number(sound_vol_string):
+                #            self._sound_vol = int(float(sound_vol_string))
+
         # Create a playlist with the sorted list of movies.
         return Playlist(sorted(movies), self._is_random)
 
