@@ -5,6 +5,8 @@ Video_looper guide: https://learn.adafruit.com/raspberry-pi-video-looper?view=al
 
 Configuration of Pi: https://www.raspberrypi.org/documentation/configuration/
 
+**REMEMBER TO SET CORRECT TIME ON THE RASPBERRY PI**
+
 ## Installation
 Update and clone repository
 ```
