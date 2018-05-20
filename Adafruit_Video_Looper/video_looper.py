@@ -69,7 +69,7 @@ class VideoLooper(object):
         self._sound_vol = 0
         # Times for controlling volume change
         self._start_time = "8:00"
-        self._end_time = "20:00"
+        self._end_time = "17:40"
         # Initialize pygame and display a blank screen.
         pygame.display.init()
         pygame.font.init()
@@ -127,22 +127,13 @@ class VideoLooper(object):
                                if re.search('\.{0}$'.format(ex), x, 
                                             flags=re.IGNORECASE) and \
                                x[0] is not '.'])
-                # Set volume depending on the time of day
-                self.now_time = datetime.now().time()
-                self._start_time = datetime.strptime(self._start_time, "%H:%M").time()
-                self._end_time = datetime.strptime(self._end_time, "%H:%M").time()
-                if self._start_time <= self.now_time <= self._end_time:
-                    self._sound_vol = 0
-                else:
-                    self._sound_vol = -6000
-                # OLD               
                 # Get the video volume from the file in the usb key
-                #sound_vol_file_path = '{0}/{1}'.format(path.rstrip('/'), self._sound_vol_file)
-                #if os.path.exists(sound_vol_file_path):
-                #    with open(sound_vol_file_path, 'r') as sound_file:
-                #        sound_vol_string = sound_file.readline()
-                #        if self._is_number(sound_vol_string):
-                #            self._sound_vol = int(float(sound_vol_string))
+                sound_vol_file_path = '{0}/{1}'.format(path.rstrip('/'), self._sound_vol_file)
+                if os.path.exists(sound_vol_file_path):
+                    with open(sound_vol_file_path, 'r') as sound_file:
+                        sound_vol_string = sound_file.readline()
+                        if self._is_number(sound_vol_string):
+                            self._sound_vol = int(float(sound_vol_string))
 
         # Create a playlist with the sorted list of movies.
         return Playlist(sorted(movies), self._is_random)
@@ -227,6 +218,13 @@ class VideoLooper(object):
             if not self._player.is_playing():
                 movie = playlist.get_next()
                 if movie is not None:
+                    time_now = datetime.now().time()
+                    start_time = datetime.strptime(self._start_time, "%H:%M").time()
+                    end_time = datetime.strptime(self._end_time, "%H:%M").time()
+                    if start_time <= time_now and time_now <= end_time:
+                        self._sound_vol = 0
+                    else:
+                        self._sound_vol = -6000
                     # Start playing the first available movie.
                     self._print('Playing movie: {0}'.format(movie))
                     self._player.play(movie, loop=playlist.length() == 1, vol = self._sound_vol)
