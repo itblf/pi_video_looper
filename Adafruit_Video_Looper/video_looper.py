@@ -68,8 +68,10 @@ class VideoLooper(object):
         # default value to 0 millibels (omxplayer)
         self._sound_vol = 0
         # Times for controlling volume change
-        self._start_time = "8:00"
-        self._end_time = "17:40"
+        _START_TIME = "8:00" # Time from when audio should be on
+        _END_TIME = "17:40"  # Time from when audio should be off
+        self.start_time = datetime.strptime(_START_TIME, "%H:%M").time()
+        self.end_time = datetime.strptime(_END_TIME, "%H:%M").time()
         # Initialize pygame and display a blank screen.
         pygame.display.init()
         pygame.font.init()
@@ -218,13 +220,11 @@ class VideoLooper(object):
             if not self._player.is_playing():
                 movie = playlist.get_next()
                 if movie is not None:
-                    time_now = datetime.now().time()
-                    start_time = datetime.strptime(self._start_time, "%H:%M").time()
-                    end_time = datetime.strptime(self._end_time, "%H:%M").time()
-                    if start_time <= time_now and time_now <= end_time:
-                        self._sound_vol = 0
+                    time_now = datetime.now().time() 
+                    if self.start_time <= time_now and time_now <= self.end_time:
+                        self._sound_vol = 0 # volume ON
                     else:
-                        self._sound_vol = -6000
+                        self._sound_vol = -6000 # volume OFF
                     # Start playing the first available movie.
                     self._print('Playing movie: {0}'.format(movie))
                     self._player.play(movie, loop=playlist.length() == 1, vol = self._sound_vol)
