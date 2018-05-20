@@ -5,7 +5,7 @@ Video_looper guide: https://learn.adafruit.com/raspberry-pi-video-looper?view=al
 
 Configuration of Pi: https://www.raspberrypi.org/documentation/configuration/
 
-**REMEMBER TO SET CORRECT TIME ON THE RASPBERRY PI**
+**REMEMBER TO SET THE CORRECT LOCAL TIME ON THE RASPBERRY PI**
 
 ## Installation
 Update and clone repository
@@ -15,7 +15,7 @@ sudo apt-get install -y git
 git clone https://github.com/rpiloop/pi_video_looper.git
 ```
 
-Install
+Install, requires internet
 ```
 cd pi_video_looper
 sudo ./install.sh
@@ -46,3 +46,10 @@ _START_TIME = "08:00"
 _END_TIME = "20:00"
 ```
 Reinstall may be necessary after changing the times.
+
+## Debugging
+Logs and standard error output can see with the following:
+```
+sudo supervisorctl tail -f video_looper
+sudo supervisorctl tail -f video_looper stderr
+```
