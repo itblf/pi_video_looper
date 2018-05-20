@@ -34,3 +34,10 @@ To enable again, simply run install script
 ```
 sudo ./install.sh
 ```
+
+## Change time-interval for volume-ON
+In file: Adafruit_Video_Looper/video_looper.py change the variables on line 71-72
+```
+_START_TIME = "08:00"
+_END_TIME = "20:00"
+```
