@@ -8,7 +8,7 @@ Configuration of Pi: https://www.raspberrypi.org/documentation/configuration/
 ## Installation
 Update and clone repository
 ```
-sudo apt-get update
+sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install -y git
 git clone https://github.com/rpiloop/pi_video_looper.git
 ```
