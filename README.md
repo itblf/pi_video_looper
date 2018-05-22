@@ -5,7 +5,11 @@ Video_looper guide: https://learn.adafruit.com/raspberry-pi-video-looper?view=al
 
 Configuration of Pi: https://www.raspberrypi.org/documentation/configuration/
 
-**REMEMBER TO SET THE CORRECT LOCAL TIME ON THE RASPBERRY PI**
+###**REMEMBER TO SET THE CORRECT LOCAL TIME ON THE RASPBERRY PI**
+Local time and keyboard-layout can be changed using the following code
+```
+sudo raspi-config
+```
 
 ## Installation
 Update and clone repository
@@ -53,3 +57,8 @@ Logs and standard error output can see with the following:
 sudo supervisorctl tail -f video_looper
 sudo supervisorctl tail -f video_looper stderr
 ```
+
+## Remote Access
+To utilize remote acces use https://remot3.it
+- Setup on rPi: https://remot3it.zendesk.com/hc/en-us/articles/115006015367-Installing-the-remot3-it-weavedconnectd-daemon-on-your-Raspberry-Pi
+- Using SSH/SFTP: https://remot3it.zendesk.com/hc/en-us/articles/115000150232-Using-remot3-it-with-Third-Party-SSH-SCP-Applications
