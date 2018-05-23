@@ -69,7 +69,7 @@ class VideoLooper(object):
         self._sound_vol = 0
         # Times for controlling volume change
         _START_TIME = "08:00" # Time from when audio should be on
-        _END_TIME = "20:00"  # Time from when audio should be off
+        _END_TIME = "18:00"  # Time from when audio should be off
         self.start_time = datetime.strptime(_START_TIME, "%H:%M").time()
         self.end_time = datetime.strptime(_END_TIME, "%H:%M").time()
         # Initialize pygame and display a blank screen.
