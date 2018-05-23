@@ -5,10 +5,14 @@ Video_looper guide: https://learn.adafruit.com/raspberry-pi-video-looper?view=al
 
 Configuration of Pi: https://www.raspberrypi.org/documentation/configuration/
 
-### **REMEMBER TO SET THE CORRECT LOCAL TIME ON THE RASPBERRY PI**
+### **REMEMBER TO SET THE CORRECT LOCAL TIME (Timezone) ON THE RASPBERRY PI**
 Local time and keyboard-layout can be changed using the following code
 ```
 sudo raspi-config
+```
+Use the following to set date and time, if it does not automatically
+```
+sudo date -s "23 May 2018 10:30:00"
 ```
 
 ## Installation
