@@ -52,7 +52,7 @@ _END_TIME = "20:00"
 Reinstall may be necessary after changing the times.
 
 ## Debugging
-Logs and standard error output can see with the following:
+Logs and standard error output can be seen with the following:
 ```
 sudo supervisorctl tail -f video_looper
 sudo supervisorctl tail -f video_looper stderr
