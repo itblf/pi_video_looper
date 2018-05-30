@@ -20,7 +20,7 @@ Update and clone repository
 ```
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install -y git
-git clone https://github.com/rpiloop/pi_video_looper.git
+git clone https://github.com/itblf/pi_video_looper.git
 ```
 
 Install, requires internet
