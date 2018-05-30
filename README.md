@@ -10,7 +10,7 @@ Local time and keyboard-layout can be changed using the following code
 ```
 sudo raspi-config
 ```
-Use the following to set date and time, if it does not automatically
+Use the following to set date and time, if it does not automatically (often because of no internet connection)
 ```
 sudo date -s "23 May 2018 10:30:00"
 ```
